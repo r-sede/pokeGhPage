@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import PokemonCard from './components/PokemonCard'
-import './App.css';
-// console.clear()
+import { Link } from 'react-router-dom';
+import PokemonCard from './components/PokemonCard';
 const ENDPOINT = 'https://pokeapi.co/api/v2/pokemon';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      toDisplay: 20,
       perPage: 20,
       currentOffset: 0,
       filterString: '',
@@ -18,11 +18,11 @@ class App extends Component {
     };
   }
   fetchPokemon() {
-    const url = `${ENDPOINT}?offset=${this.state.currentOffset}&limit=${this.state.perPage}`;
+    const url = `${ENDPOINT}?offset=${this.state.currentOffset}&limit=${this.state.toDisplay}`;
     fetch(url)
         .then(response => response.json())
         // .then(data => console.log(data))
-        .then(data => this.setState(({pokeToDisplay: data.results, loaded: true})))
+        .then(data => this.setState(({pokeToDisplay: data.results, loaded: true, nextUrl: data.next})))
   }
   componentDidMount() {
     this.fetchPokemon()
@@ -32,10 +32,12 @@ class App extends Component {
     return (
         this.state.loaded && (
             <>
-              <header className="bg-green py-[10px] sticky top-0">
+              <header className="bg-green py-[10px] sticky top-0 shadow-xl">
                 <div className="container">
                   <div className="flex justify-between">
-                    <img className="logo" src="assets/img/logo-pokemon-79x45.png"/>
+                    <Link to="/">
+                      <img className="logo" src="/assets/img/logo-pokemon-79x45.png"/>
+                    </Link>
                     <input className="py-2 px-4 rounded-lg" type="text" placeholder="Search" onChange={e => {
                       this.setState({filterString: e.target.value})
                     }}/>
@@ -48,8 +50,6 @@ class App extends Component {
                     <div className="row">
                       {results
                           .filter(pokemon => {
-                            // console.log(pokemon)
-                            // return true
                             return this.state.filterString ? pokemon.name.includes(this.state.filterString) : true
                           })
                           .map((pokemon, index) =>
@@ -60,15 +60,17 @@ class App extends Component {
                     </div>
                     <div className="mt-[30px]">
                       <div className="flex justify-between">
-                        {/*<button className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer"*/}
-                        {/*  onClick={ e => {*/}
-                        {/*    // this.setState({perPage: this.state.perPage - 20});*/}
-                        {/*    // this.fetchPokemon()*/}
-                        {/*}}>moins de pokemon</button>*/}
-                        <button className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer" onClick={ e => {
+                        <button className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer" disabled={this.state.toDisplay <= this.state.perPage} onClick={ e => {
                           this.setState((state) => {
                             return {
-                              perPage: state.perPage + state.perPage
+                              toDisplay: state.toDisplay - state.perPage
+                            }
+                          },this.fetchPokemon);
+                        }} >moins de pokemon</button>
+                        <button className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer" disabled={!this.state.nextUrl} onClick={ e => {
+                          this.setState((state) => {
+                            return {
+                              toDisplay: state.toDisplay + state.perPage
                             }
                           },this.fetchPokemon);
                         }} >plus de pokemon</button>
