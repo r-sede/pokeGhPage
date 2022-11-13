@@ -40,7 +40,10 @@ class PokemonCard extends Component {
                     <article className={`rounded-lg p-[10px] border border-black hover:shadow-xl cursor-pointer h-full ${getCardClassName(hit, 'bg-','/50')}`}>
                         <div className={`rounded-lg p-[10px] pt-[2px] border border-black h-full ${getCardClassName(hit, 'bg-', '')}`}>
                             <div className="flex justify-between items-center text-white py-[2px]">
-                                <strong>{hit.name}</strong>
+                                <div>
+                                    <strong>{hit.name}</strong>
+                                    <span className="ml-[5px] text-sm">#{hit.id}</span>
+                                </div>
                                 <div className={`px-[3px] py-[2px] text-black text-sm rounded-full border-[2px] bg-white`}>
                                     {hit.types && hit.types.map((type, index) =>
                                         <span key={index} className="mx-[2px]">{type.type.name}</span>
@@ -48,7 +51,11 @@ class PokemonCard extends Component {
                                 </div>
                             </div>
                             <figure className="flex justify-center items-center mb-[20px]">
-                                <img src={ hit.sprites['front_default']} alt={hit.name} style={{height: '96px'}}/>
+                                {hit.sprites.other['official-artwork']['front_default'] && (
+                                    <img src={ hit.sprites.other['official-artwork']['front_default']} alt={hit.name} style={{width: '125px'}}/>
+
+                                )}
+                                {/*<img src={ hit.sprites['front_default']} alt={hit.name} style={{height: '96px'}}/>*/}
                             </figure>
                             <div className="rounded-md p-[10px] border border-black mb-[20px] bg-white">
                                 {hit.stats && hit.stats.map((stat, index) =>

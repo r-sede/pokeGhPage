@@ -38,8 +38,8 @@ class App extends Component {
                     <Link to="/">
                       <img className="logo" src="/assets/img/logo-pokemon-79x45.png"/>
                     </Link>
-                    <input className="py-2 px-4 rounded-lg" type="text" placeholder="Search" onChange={e => {
-                      this.setState({filterString: e.target.value})
+                    <input className="py-2 px-4 rounded-lg" type="text" placeholder="Search"  autoCorrect="off" autoCapitalize="none" onChange={e => {
+                      this.setState({filterString: e.target.value.toLocaleLowerCase().trim()})
                     }}/>
                   </div>
                 </div>
