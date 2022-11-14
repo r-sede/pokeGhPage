@@ -84,7 +84,11 @@ const List = (props) => {
             </div>
         ) : ( // en chargement
             <div className="flex justify-center items-center py-[30px]">
-                <div className="spinner"></div>
+                <div>
+                    <strong>loading</strong>
+                    <div className="spinner"></div>
+
+                </div>
             </div>
         )
 
