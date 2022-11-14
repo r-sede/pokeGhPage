@@ -12,7 +12,7 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<List />}></Route>
-                <Route path="/p=:pageParams" element={<List />}></Route>
+                <Route path="/p/:pageParams" element={<List />}></Route>
                 <Route path="/show/:id" element={<PokemonShow />}></Route>
             </Routes>
         </BrowserRouter>

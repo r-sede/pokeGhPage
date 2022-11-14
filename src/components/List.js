@@ -65,10 +65,10 @@ const List = (props) => {
                                 <div className="mt-[30px]">
                                     <div className="flex justify-between">
                                         {page > 1 && (
-                                            <Link to={`/p=${parseInt(page) - 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer">moins de pokemon</Link>
+                                            <Link to={`/p/${parseInt(page) - 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer">moins de pokemon</Link>
                                         )}
                                         {nextUrl && (
-                                            <Link to={`/p=${parseInt(page) + 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer">plus de pokemon</Link>
+                                            <Link to={`/p/${parseInt(page) + 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer">plus de pokemon</Link>
                                         )}
 
                                     </div>
