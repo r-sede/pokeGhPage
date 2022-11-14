@@ -64,8 +64,13 @@ const List = (props) => {
                                 </div>
                                 <div className="mt-[30px]">
                                     <div className="flex justify-between">
-                                        <Link to={`/p=${parseInt(page) - 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer" disabled={page <= 1}>moins de pokemon</Link>
-                                        <Link to={`/p=${parseInt(page) + 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer" disabled={!nextUrl}>plus de pokemon</Link>
+                                        {page > 1 && (
+                                            <Link to={`/p=${parseInt(page) - 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer">moins de pokemon</Link>
+                                        )}
+                                        {nextUrl && (
+                                            <Link to={`/p=${parseInt(page) + 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer" disabled={!nextUrl}>plus de pokemon</Link>
+                                        )}
+
                                     </div>
                                 </div>
                             </div>
@@ -74,13 +79,13 @@ const List = (props) => {
                 </>
         ) : // status pas ok
         loaded && error ? (
-            <>
-
-            </>
+            <div className="flex justify-center items-center py-[30px]">
+                <div>Something wen wrong :(</div>
+            </div>
         ) : (
-            <>
-
-            </>
+            <div className="flex justify-center items-center py-[30px]">
+                <div className="spinner"></div>
+            </div>
         )
 
     )

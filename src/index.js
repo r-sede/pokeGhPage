@@ -11,14 +11,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 root.render(
-  <React.StrictMode>
-      <BrowserRouter>
-          {/*<App />*/}
-          <Routes>
-              <Route path="/" element={<List />}></Route>
-              <Route path="/show/:id" element={<PokemonShow />}></Route>
-          </Routes>
-      </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            {/*<App />*/}
+            <Routes>
+                <Route path="/" element={<List />}></Route>
+                <Route path="/p=:pageParams" element={<List />}></Route>
+                <Route path="/show/:id" element={<PokemonShow />}></Route>
+            </Routes>
+        </BrowserRouter>
+    </React.StrictMode>
 );
 
