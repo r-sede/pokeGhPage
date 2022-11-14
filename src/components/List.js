@@ -68,7 +68,7 @@ const List = (props) => {
                                             <Link to={`/p=${parseInt(page) - 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer">moins de pokemon</Link>
                                         )}
                                         {nextUrl && (
-                                            <Link to={`/p=${parseInt(page) + 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer" disabled={!nextUrl}>plus de pokemon</Link>
+                                            <Link to={`/p=${parseInt(page) + 1}`} className="bg-green text-white text-bold px-4 py-2 rounded-lg cursor-pointer">plus de pokemon</Link>
                                         )}
 
                                     </div>
@@ -82,7 +82,7 @@ const List = (props) => {
             <div className="flex justify-center items-center py-[30px]">
                 <div>Something wen wrong :(</div>
             </div>
-        ) : (
+        ) : ( // en chargement
             <div className="flex justify-center items-center py-[30px]">
                 <div className="spinner"></div>
             </div>

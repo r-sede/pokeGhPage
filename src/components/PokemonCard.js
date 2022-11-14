@@ -32,7 +32,6 @@ class PokemonCard extends Component {
 
     render() {
         const hit = this.pokeDetail
-        // console.log(this.pokeDetail)
         return (
             // status ok et chargé
             this.state.loaded && !this.state.error ? (
@@ -55,7 +54,6 @@ class PokemonCard extends Component {
                                     <img src={ hit.sprites.other['official-artwork']['front_default']} alt={hit.name} style={{width: '125px'}}/>
 
                                 )}
-                                {/*<img src={ hit.sprites['front_default']} alt={hit.name} style={{height: '96px'}}/>*/}
                             </figure>
                             <div className="rounded-md p-[10px] border border-black mb-[20px] bg-white">
                                 {hit.stats && hit.stats.map((stat, index) =>

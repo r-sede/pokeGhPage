@@ -111,7 +111,6 @@ const PokemonShow = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                {/*{this.props.url}*/}
                             </article>
                         </div>
                     </div>
